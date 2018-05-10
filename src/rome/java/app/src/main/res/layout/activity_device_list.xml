@@ -33,7 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/device_list"
-                app:list="@{viewModel.deviceList}">
+                app:list="@{viewModel.deviceList}"
+                android:onItemSelected="@{viewModel.deviceSelected}">
             </ListView>
         </android.support.constraint.ConstraintLayout>
     </android.support.design.widget.CoordinatorLayout>

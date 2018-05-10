@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.microsoft.connecteddevices.ConnectedDevicesException
@@ -29,12 +31,12 @@ class DeviceListActivity : AppCompatActivity() {
         }
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
         initData()
+    }
+
+    fun deviceSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+        val device = parent.selectedItem as Device
+        Log.i("MainActivity", device.name);
     }
 
     private fun initData() {

@@ -23,11 +23,13 @@ import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.AdapterView
 
 import com.microsoft.connecteddevices.IAuthCodeProvider
 import com.microsoft.connecteddevices.IPlatformInitializationHandler
 import com.microsoft.connecteddevices.Platform
 import com.microsoft.connecteddevices.PlatformInitializationStatus
+import com.microsoft.projectromedemo.viewModels.Device
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
