@@ -14,6 +14,7 @@ import com.microsoft.connecteddevices.IRemoteSystemDiscoveryListener
 import com.microsoft.connecteddevices.RemoteSystem
 import com.microsoft.connecteddevices.RemoteSystemDiscovery
 import com.microsoft.projectromedemo.databinding.ActivityDeviceListBinding
+import com.microsoft.projectromedemo.models.DeviceRepository
 import com.microsoft.projectromedemo.viewModels.Device
 import com.microsoft.projectromedemo.viewModels.DeviceListViewModel
 
@@ -22,21 +23,16 @@ import kotlinx.android.synthetic.main.activity_device_list.*
 class DeviceListActivity : AppCompatActivity() {
 
     private var discovery: RemoteSystemDiscovery? = null;
-    private val viewModel = DeviceListViewModel();
+    private val viewModel = DeviceListViewModel(this, DeviceRepository.devices);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityDeviceListBinding>(this, R.layout.activity_device_list).let {
-            it.viewModel = viewModel
+        val binding = DataBindingUtil.setContentView<ActivityDeviceListBinding>(this, R.layout.activity_device_list).apply {
+            viewModel = this@DeviceListActivity.viewModel
         }
         setSupportActionBar(toolbar)
 
         initData()
-    }
-
-    fun deviceSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-        val device = parent.selectedItem as Device
-        Log.i("MainActivity", device.name);
     }
 
     private fun initData() {
@@ -57,7 +53,7 @@ class DeviceListActivity : AppCompatActivity() {
                     }
 
                     runOnUiThread({
-                        viewModel.deviceList.add(Device(remoteSystem))
+                        DeviceRepository.add(Device(remoteSystem))
                     })
                 }
             })

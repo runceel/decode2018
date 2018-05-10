@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/device_list"
                 app:list="@{viewModel.deviceList}"
-                android:onItemSelected="@{viewModel.deviceSelected}">
+                app:onItemClickListener="@{viewModel.deviceSelected}">
             </ListView>
         </android.support.constraint.ConstraintLayout>
     </android.support.design.widget.CoordinatorLayout>
