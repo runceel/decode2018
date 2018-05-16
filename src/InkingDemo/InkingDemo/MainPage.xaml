@@ -1,0 +1,66 @@
+﻿<Page x:Class="InkingDemo.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:InkingDemo"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Margin="10">
+        <TextBlock Text="作業記録報告書"
+                   Style="{ThemeResource HeaderTextBlockStyle}" />
+        <TextBox Header="作業者名" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="textBoxMemo"
+                     Header="作業メモ"
+                     AcceptsReturn="True"
+                     Height="200" />
+            <controls:MarkdownTextBlock Text="{x:Bind textBoxMemo.Text, Mode=OneWay}"
+                                        Grid.Column="1" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <InkToolbar TargetInkCanvas="{x:Bind inkCanvas}" 
+                        Grid.ColumnSpan="2" />
+            <Image x:Name="picture"
+                   Height="300"
+                   Grid.Row="1" />
+            <InkCanvas x:Name="inkCanvas"
+                       Grid.Row="1" />
+            <Canvas x:Name="recognitionCanvas"
+                    Grid.Row="1" />
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1">
+                <Button Click="Button_Click">
+                    <SymbolIcon Symbol="Camera" />
+                </Button>
+                <Button Click="RecognizeButton_Click">
+                    <SymbolIcon Symbol="Memo" />
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Border BorderBrush="Black"
+                BorderThickness="1"
+                HorizontalAlignment="Right"
+                Margin="10">
+            <StackPanel>
+                <TextBlock Text="署名欄" />
+                <InkCanvas Width="500"
+                           Height="100" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

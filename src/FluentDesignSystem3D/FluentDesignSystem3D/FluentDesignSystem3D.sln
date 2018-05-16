@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentDesignSystem3D", "Assembly-CSharp.csproj", "{F1B5745B-7DC3-D2B1-0536-1DEA3988D857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentDesignSystem3D", "Assembly-CSharp-Editor.csproj", "{8C5EE48E-C933-C810-D0B8-2C6F5D783818}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1B5745B-7DC3-D2B1-0536-1DEA3988D857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B5745B-7DC3-D2B1-0536-1DEA3988D857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B5745B-7DC3-D2B1-0536-1DEA3988D857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B5745B-7DC3-D2B1-0536-1DEA3988D857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5EE48E-C933-C810-D0B8-2C6F5D783818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5EE48E-C933-C810-D0B8-2C6F5D783818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5EE48E-C933-C810-D0B8-2C6F5D783818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5EE48E-C933-C810-D0B8-2C6F5D783818}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
