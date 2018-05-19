@@ -9,9 +9,8 @@
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Border BorderThickness="2"
-                BorderBrush="Black">
-            <InkCanvas x:Name="ink" />
-        </Border>
+        <controls:DataGrid ItemsSource="{x:Bind People}">
+            
+        </controls:DataGrid>
     </Grid>
 </Page>

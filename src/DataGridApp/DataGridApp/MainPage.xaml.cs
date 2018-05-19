@@ -22,15 +22,15 @@ namespace DataGridApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private IEnumerable<Person> People { get; } = Enumerable.Range(1, 1000).Select(x => new Person
+            {
+                Id = x,
+                Name = $"Tanaka Taro {x}",
+            }).ToArray();
+
         public MainPage()
         {
             this.InitializeComponent();
         }
-    }
-
-    public class Person
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

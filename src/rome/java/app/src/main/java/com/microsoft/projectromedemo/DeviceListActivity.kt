@@ -57,6 +57,9 @@ class DeviceListActivity : AppCompatActivity() {
                     })
                 }
             })
+            it.filter {
+                it.isAvailableByProximity
+            }
         }
         startDiscover(b)
     }

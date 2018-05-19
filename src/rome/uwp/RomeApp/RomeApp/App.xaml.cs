@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using System.Web;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.AppService;
@@ -142,7 +144,8 @@ namespace RomeApp
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), null);
+                var query = HttpUtility.ParseQueryString(e.Uri.Query);
+                rootFrame.Navigate(typeof(MainPage), query["text"]);
             }
             // Ensure the current window is active
             Window.Current.Activate();
@@ -198,6 +201,13 @@ namespace RomeApp
         private void AppServiceConnection_ServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
         {
             _appServiceDeferral.Complete();
+        }
+
+        public async Task SendAsync(string text)
+        {
+            var message = new ValueSet();
+            message["Request"] = text;
+            await _appServiceConnection?.SendMessageAsync(message);
         }
     }
 }

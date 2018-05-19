@@ -6,12 +6,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import com.microsoft.connecteddevices.*
+import java.net.URI
+import java.net.URLEncoder
 import java.util.*
 
 class Device(private val remoteSystem: RemoteSystem) {
     val name: String;
     val type: String;
     val id: String;
+    val isAvailableByProximity: String;
 
     val isLaunched = ObservableBoolean(false)
     val isConnected = ObservableBoolean(false)
@@ -22,11 +25,12 @@ class Device(private val remoteSystem: RemoteSystem) {
         id = remoteSystem.id
         name = remoteSystem.displayName
         type = remoteSystem.kind.toString()
+        isAvailableByProximity = remoteSystem.isAvailableByProximity.toString()
     }
 
-    fun launchApp(callback: (RemoteLaunchUriStatus?) -> Unit) {
+    fun launchApp(text: String, callback: (RemoteLaunchUriStatus?) -> Unit) {
         RemoteLauncher.LaunchUriAsync(RemoteSystemConnectionRequest(remoteSystem),
-                Uri.parse("decode18://"),
+                Uri.parse("decode18:?text=${URLEncoder.encode(text, "utf-8")}"),
                 object: IRemoteLauncherListener {
                     override fun onCompleted(status: RemoteLaunchUriStatus?) {
                         callback(status)
@@ -35,7 +39,7 @@ class Device(private val remoteSystem: RemoteSystem) {
                 })
     }
 
-    fun connect() {
+    fun connect(callback: (String) -> Unit) {
         connection = AppServiceConnection("RomeAppService",
                 "2d7f326b-d78c-494e-9649-bfc98e52a8b3_5ppbtxp1sbcde",
                 RemoteSystemConnectionRequest(remoteSystem),
@@ -53,16 +57,19 @@ class Device(private val remoteSystem: RemoteSystem) {
                         isConnected.set(false)
                     }
                 },
-                { req -> })
+                { req ->
+                    Log.i("RomeApp", "Received ${req.message.getString("Request")}")
+                    callback(req.message.getString("Request"))
+                })
         connection.openRemoteAsync()
     }
 
-    fun sendMessage() {
+    fun sendMessage(text: String) {
         if (!isConnected.get()) {
             return
         }
 
-        val message = "Message from Android ${Date()}"
+        val message = text
         val messageBundle = Bundle().apply {
             putString("Request", message)
         }

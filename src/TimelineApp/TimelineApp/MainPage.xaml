@@ -1,0 +1,52 @@
+﻿<Page x:Class="TimelineApp.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:TimelineApp"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:system="using:System"
+      xmlns:uwp="using:AdaptiveCards.Rendering.Uwp"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <local:AdaptiveCardConverter x:Key="adaptiveCardConverter" />
+    </Page.Resources>
+    <Page.TopAppBar>
+        <CommandBar x:Name="commandBar">
+            <CommandBar.Content>
+                <StackPanel Orientation="Horizontal"
+                            Height="{Binding ActualHeight, Mode=OneWay, ElementName=commandBar}"
+                            Margin="10,0">
+                    <TextBlock Text="Title: "
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource CaptionTextBlockStyle}" />
+                    <TextBox x:Name="textBoxTitle"
+                             VerticalAlignment="Center"
+                             Width="500" />
+                </StackPanel>
+            </CommandBar.Content>
+            <AppBarButton Label="SignIn"
+                          Icon="Account"
+                          Click="SignIn_Click" />
+            <AppBarButton Label="Add Content"
+                          Icon="Add"
+                          IsEnabled="{x:Bind local:StringUtils.IsNotNullOrWhiteSpace(textBoxTitle.Text), Mode=OneWay}"
+                          Click="AddContent_Click" />
+            <AppBarButton Label="Clear"
+                          Icon="Clear"
+                          Click="ClearButton_Click" />
+        </CommandBar>
+    </Page.TopAppBar>
+    <Grid>
+        <ListView ItemsSource="{x:Bind DocumentManager.Items, Mode=OneWay}"
+                  SelectionMode="None"
+                  IsItemClickEnabled="True"
+                  ItemClick="ListView_ItemClick">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:AppContent">
+                    <ContentControl Content="{x:Bind Converter={StaticResource adaptiveCardConverter}}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

@@ -31,5 +31,17 @@ namespace RomeApp
             this.InitializeComponent();
             Debug.WriteLine(Package.Current.Id.FamilyName);
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ValueHolder.Text = e.Parameter as string;
+        }
+
+        private async void ButtonSend_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)App.Current;
+            await app.SendAsync(textBox.Text);
+        }
     }
 }
