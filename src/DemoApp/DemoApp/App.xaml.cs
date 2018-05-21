@@ -2,11 +2,13 @@
 using DemoApp.Helpers;
 using DemoApp.Models;
 using DemoApp.Services;
-
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Core;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
 namespace DemoApp
@@ -32,16 +34,21 @@ namespace DemoApp
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            Singleton<UIThreadDispatcherService>.Instance.Initialize();
+            SetupApp();
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);
             }
         }
 
-        protected override async void OnActivated(IActivatedEventArgs args)
+        private void SetupApp()
         {
             Singleton<UIThreadDispatcherService>.Instance.Initialize();
+        }
+
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
+            SetupApp();
             await ActivationService.ActivateAsync(args);
         }
 

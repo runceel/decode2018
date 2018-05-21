@@ -8,7 +8,7 @@
     <Grid x:Name="ContentArea"
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBlock Text="The de:code 2018 sample application."
+            <TextBlock Text="de:code 2018"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>

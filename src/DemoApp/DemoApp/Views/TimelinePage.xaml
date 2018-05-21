@@ -11,7 +11,12 @@
     <Page.Resources>
         <converters:AdaptiveCardConverter x:Key="adaptiveCardConverter" />
     </Page.Resources>
-    <Page.BottomAppBar>
+    <Grid x:Name="ContentArea"
+          Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <CommandBar x:Name="commandBar">
             <CommandBar.Content>
                 <StackPanel Orientation="Horizontal"
@@ -34,10 +39,8 @@
                           Icon="Clear"
                           Command="{x:Bind ViewModel.ClearCommand}" />
         </CommandBar>
-    </Page.BottomAppBar>
-    <Grid x:Name="ContentArea"
-          Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+              Grid.Row="1">
             <Grid>
                 <ListView ItemsSource="{x:Bind ViewModel.DocumentManager.Items, Mode=OneWay}"
                           SelectionMode="None"

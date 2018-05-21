@@ -1,8 +1,10 @@
 ﻿using System;
 
 using DemoApp.ViewModels;
-
+using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace DemoApp.Views
