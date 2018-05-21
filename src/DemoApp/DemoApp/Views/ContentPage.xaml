@@ -1,0 +1,40 @@
+﻿<Page x:Class="DemoApp.Views.ContentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      Style="{StaticResource PageStyle}"
+      mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Save"
+                          Icon="Save"
+                          Command="{x:Bind ViewModel.SaveCommand}" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="ContentArea"
+          Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBox Text="{x:Bind ViewModel.AppContent.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Stretch" />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{x:Bind ViewModel.AppContent.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         AcceptsReturn="True" />
+                <controls:MarkdownTextBlock Text="{x:Bind ViewModel.AppContent.Content, Mode=OneWay}"
+                                            Grid.Column="1" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

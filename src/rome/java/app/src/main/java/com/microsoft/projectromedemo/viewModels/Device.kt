@@ -30,7 +30,7 @@ class Device(private val remoteSystem: RemoteSystem) {
 
     fun launchApp(text: String, callback: (RemoteLaunchUriStatus?) -> Unit) {
         RemoteLauncher.LaunchUriAsync(RemoteSystemConnectionRequest(remoteSystem),
-                Uri.parse("decode18:?text=${URLEncoder.encode(text, "utf-8")}"),
+                Uri.parse("decodedemo:rome?text=${URLEncoder.encode(text, "utf-8")}"),
                 object: IRemoteLauncherListener {
                     override fun onCompleted(status: RemoteLaunchUriStatus?) {
                         callback(status)
@@ -41,7 +41,7 @@ class Device(private val remoteSystem: RemoteSystem) {
 
     fun connect(callback: (String) -> Unit) {
         connection = AppServiceConnection("RomeAppService",
-                "2d7f326b-d78c-494e-9649-bfc98e52a8b3_5ppbtxp1sbcde",
+                "45014okazuki.decode2018_r82gs1ecy8g7c",
                 RemoteSystemConnectionRequest(remoteSystem),
                 object: IAppServiceConnectionListener {
                     override fun onSuccess() {
