@@ -10,7 +10,6 @@
 
     <Grid>
         <controls:DataGrid ItemsSource="{x:Bind People}">
-            
         </controls:DataGrid>
     </Grid>
 </Page>

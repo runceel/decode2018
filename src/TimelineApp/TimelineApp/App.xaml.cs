@@ -100,9 +100,9 @@ namespace TimelineApp
 
         protected override void OnActivated(IActivatedEventArgs args)
         {
-            if (args is ProtocolActivatedEventArgs e)
+            if (args.Kind == ActivationKind.Protocol)
             {
-                OnProtocolActivated(e);
+                OnProtocolActivated((ProtocolActivatedEventArgs)args);
                 return;
             }
 
